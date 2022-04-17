@@ -9,13 +9,12 @@ import time
 option = webdriver.ChromeOptions()
 wait=120
 option.add_argument('--disable-blink-features=AutomationControlled')
+lan = input("Vilket län vill du söka i?(byt ut å,ä,ö mot a,a,o): ")
 with webdriver.Chrome('chromedriver', options=option) as driver:
-    # Initial load and "Välkommen..."
-    driver.get("https://bokapass.nemoq.se/Booking/Booking/Index/stockholm")
+    driver.get("https://bokapass.nemoq.se/Booking/Booking/Index/vastmanland")
     time.sleep(10)
-    # Check first available timeslot
     while(1):
-        driver.get("https://bokapass.nemoq.se/Booking/Booking/Index/stockholm")
+        driver.get("https://bokapass.nemoq.se/Booking/Booking/Index/vastmanland")
         WebDriverWait(driver, wait).until(EC.presence_of_element_located((By.ID, "SectionId")))
         dropdown = driver.find_element(By.ID, "SectionId")
         driver.find_element(By.NAME, "TimeSearchFirstAvailableButton").click()
